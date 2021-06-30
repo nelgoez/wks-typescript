@@ -1,12 +1,10 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './components/App';
+import {Provider} from 'react-redux';
+import store from './redux/store/store';
 
-interface appProps {
-    title:string
-}
 
-function App({title}:appProps) : JSX.Element {
-	return <div>Henry Workshop - {title}</div>;
-}
-
-ReactDOM.render(<App title='TypeScript' />, document.querySelector('#root'));
+ReactDOM.render(
+    <Provider store={store}>
+		<App title='Nahuel' />
+	</Provider>, document.querySelector('#root'));
