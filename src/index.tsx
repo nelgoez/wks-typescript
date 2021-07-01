@@ -6,5 +6,5 @@ import store from './redux/store/store';
 
 ReactDOM.render(
     <Provider store={store}>
-		<App title='Nahuel' />
+		<App />
 	</Provider>, document.querySelector('#root'));

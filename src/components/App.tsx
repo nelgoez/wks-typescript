@@ -1,11 +1,27 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {connect} from 'react-redux';
+import {User, fetchUsers} from '../redux/actions';
+import {StoreState} from '../redux/reducers';
+
 
 interface AppProps {
-    title :string
+	users: User[];
+	fetchUsers(): any;
 }
 
-function App ({title}:AppProps){
-    return <div>TypeScript WorkShop of {title}</div>
+function App ({users, fetchUsers}:AppProps){
+
+    useEffect(() => {
+        fetchUsers();
+    }, []);
+
+    return <div>{users[0]}</div>
 }
 
-export default App;
+const mapStateToProps = (state: StoreState): {users: User[]} => {
+	return {
+		users: state.users,
+	};
+};
+
+export default connect(mapStateToProps, {fetchUsers})(App);
