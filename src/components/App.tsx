@@ -15,7 +15,18 @@ function App ({users, fetchUsers}:AppProps){
         fetchUsers();
     }, []);
 
-    return <div>{users[0]}</div>
+    return (
+		<div>
+			<button onClick={fetchUsers}>FETCH USERS!</button>
+			{users.map((user: User) => {
+				return (
+					<div key={user.id}>
+						{user.id}) {user.name}
+					</div>
+				);
+			})}
+		</div>
+	);
 }
 
 const mapStateToProps = (state: StoreState): {users: User[]} => {
