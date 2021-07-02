@@ -1,11 +1,39 @@
-import {User, FetchUsersAction} from '../actions/index';
-import {ActionTypes} from '../actions/types';
+import { User } from '../actions';
+import { ActionTypes,  Action } from '../actions/types';
 
-export const usersReducer = (state: User[] = [], action: FetchUsersAction) => {
-	switch (action.type) {
-		case ActionTypes.FETCH_USERS:
-			return action.payload;
-		default:
-			return state;
-	}
+export interface UsersStoreState {
+  users: User[];
+  loading: boolean;
+}
+
+const initialState: UsersStoreState = {
+  users: [],
+  loading: false
+};
+
+export const usersReducer = (
+  state = initialState,
+  action: Action
+) => {
+  switch (action.type) {
+    case ActionTypes.FETCH_USERS:
+      return {
+        ...state,
+        users: action.payload,
+        loading: false
+      }
+    case ActionTypes.DELETE_USERS:
+      return {
+        ...state,
+        users: state.users.filter((user: User) => user.id !== action.payload),
+        loading: false
+      }
+    case ActionTypes.LOADING_ACTION:
+      return {
+        ...state,
+        loading: true
+      };
+    default:
+      return state;
+  }
 };
