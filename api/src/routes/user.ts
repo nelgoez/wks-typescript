@@ -1,4 +1,6 @@
-import {Response, Request, Router} from 'express';
+import { Response, Request, Router, NextFunction } from 'express';
+import { User } from '../../models/User'
+const router = Router()
 
 router.get('/', (req: Request, res: Response, next: NextFunction) => {
 	User.findAll()

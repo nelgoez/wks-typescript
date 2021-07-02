@@ -9,16 +9,11 @@ interface AppProps {
 	fetchUsers(): any;
 }
 
-function App ({users, fetchUsers}:AppProps){
-
-    useEffect(() => {
-        fetchUsers();
-    }, []);
-
+function App (props:AppProps){
     return (
 		<div>
-			<button onClick={fetchUsers}>FETCH USERS!</button>
-			{users.map((user: User) => {
+			<button onClick={props.fetchUsers}>FETCH USERS!</button>
+			{props.users.map((user: User) => {
 				return (
 					<div key={user.id}>
 						{user.id}) {user.name}
