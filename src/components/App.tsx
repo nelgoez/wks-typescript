@@ -10,6 +10,11 @@ interface AppProps {
 }
 
 function App (props:AppProps){
+
+	useEffect(() => {
+		props.fetchUsers();
+	}, []);
+
     return (
 		<div>
 			<button onClick={props.fetchUsers}>FETCH USERS!</button>

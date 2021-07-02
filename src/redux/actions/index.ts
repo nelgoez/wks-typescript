@@ -13,7 +13,7 @@ export interface User {
     lastName: string;
 }
 export interface FetchUsersAction {
-    type: ActionTypes.fetchUsers;
+    type: ActionTypes.FETCH_USERS;
     payload: User[];
 }
 
@@ -21,7 +21,7 @@ export const fetchUsers = () => {
     return async (dispatch: Dispatch) => {
         const response = await axios.get<User[]>(url);
         dispatch<FetchUsersAction>({
-            type: ActionTypes.fetchUsers,
+            type: ActionTypes.FETCH_USERS,
             payload: response.data
         })
     };

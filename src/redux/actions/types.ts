@@ -1,3 +1,3 @@
 export enum ActionTypes {
-    fetchUsers
+    FETCH_USERS='FETCH_USERS'
   }
